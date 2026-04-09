@@ -1,4 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom";
+import { Coins, Trophy } from "lucide-react";
 
 const SessionComplete = () => {
   const navigate = useNavigate();
@@ -13,13 +14,15 @@ const SessionComplete = () => {
       <div />
 
       <div className="flex flex-col items-center gap-6 animate-scale-in text-center">
-        <div className="text-6xl" style={{ animation: "coin-spin 1s ease-out" }}>🪙</div>
+        <div className="w-24 h-24 rounded-full gradient-neon flex items-center justify-center glow-primary" style={{ animation: "coin-spin 1s ease-out" }}>
+          <Trophy size={40} className="text-primary-foreground" />
+        </div>
         <div>
           <h1 className="text-5xl font-extrabold gradient-text">+{coins}</h1>
           <p className="text-lg text-muted-foreground font-medium mt-1">FocusCoins zdobyte!</p>
         </div>
 
-        <div className="bg-secondary rounded-2xl p-5 w-full max-w-xs space-y-3">
+        <div className="bg-card rounded-2xl p-5 w-full max-w-xs space-y-3 card-shadow">
           <div className="flex justify-between text-sm">
             <span className="text-muted-foreground">Czas skupienia</span>
             <span className="font-semibold text-foreground">{minutes} min</span>
@@ -34,7 +37,7 @@ const SessionComplete = () => {
           </div>
           <div className="border-t border-border pt-3 flex justify-between text-sm">
             <span className="font-semibold text-foreground">Razem</span>
-            <span className="font-bold text-primary">+{coins}</span>
+            <span className="font-bold text-primary flex items-center gap-1"><Coins size={14} /> +{coins}</span>
           </div>
         </div>
       </div>

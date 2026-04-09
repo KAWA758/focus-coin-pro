@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { ArrowLeft, Check } from "lucide-react";
+import { ArrowLeft, Check, Coins, Award } from "lucide-react";
 
 const RewardDetails = () => {
   const navigate = useNavigate();
@@ -44,30 +44,41 @@ const RewardDetails = () => {
         <ArrowLeft size={24} />
       </button>
 
-      <div className="rounded-2xl p-8 flex flex-col items-center text-center mb-6"
+      <div className="rounded-2xl p-8 flex flex-col items-center text-center mb-6 relative overflow-hidden"
         style={{ background: `${reward.color}15` }}>
-        <span className="text-7xl mb-4">{reward.emoji}</span>
-        <p className="text-sm text-muted-foreground font-medium">{reward.brand}</p>
-        <h1 className="text-2xl font-bold text-foreground mt-1">{reward.title}</h1>
+        <div className="absolute inset-0 opacity-10" style={{
+          background: `radial-gradient(circle at 50% 30%, ${reward.color} 0%, transparent 60%)`
+        }} />
+        <div className="w-20 h-20 rounded-2xl flex items-center justify-center mb-4 relative z-10"
+          style={{ background: `${reward.color}25` }}>
+          <Award size={36} style={{ color: reward.color }} />
+        </div>
+        <p className="text-sm text-muted-foreground font-medium relative z-10">{reward.brand}</p>
+        <h1 className="text-2xl font-bold text-foreground mt-1 relative z-10">{reward.title}</h1>
       </div>
 
-      <div className="space-y-4 flex-1">
-        <div className="bg-secondary rounded-xl p-4">
-          <p className="text-xs text-muted-foreground mb-1">Koszt</p>
-          <p className="text-lg font-bold text-foreground">🪙 {reward.coins} FocusCoins</p>
-        </div>
-        <div className="bg-secondary rounded-xl p-4">
-          <p className="text-xs text-muted-foreground mb-1">Szczegóły</p>
-          <p className="text-sm text-foreground">
-            Odbierz tę nagrodę, aby otrzymać {reward.title.toLowerCase()} od {reward.brand}.
-            Kod zostanie dostarczony na Twój e-mail w ciągu 24 godzin.
-          </p>
+      <div className="space-y-3 flex-1">
+        <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider px-1">Szczegóły oferty</p>
+        <div className="bg-card rounded-2xl card-shadow divide-y divide-border overflow-hidden">
+          <div className="p-4">
+            <p className="text-xs text-muted-foreground mb-1">Koszt</p>
+            <p className="text-lg font-bold text-foreground flex items-center gap-1.5">
+              <Coins size={18} className="text-primary" /> {reward.coins} FocusCoins
+            </p>
+          </div>
+          <div className="p-4">
+            <p className="text-xs text-muted-foreground mb-1">Opis</p>
+            <p className="text-sm text-foreground">
+              Odbierz tę nagrodę, aby otrzymać {reward.title.toLowerCase()} od {reward.brand}.
+              Kod zostanie dostarczony na Twój e-mail w ciągu 24 godzin.
+            </p>
+          </div>
         </div>
       </div>
 
       <button
         onClick={() => setRedeemed(true)}
-        className="w-full py-4 rounded-2xl gradient-primary text-primary-foreground font-semibold text-lg transition-all active:scale-[0.98] mt-6"
+        className="w-full py-4 rounded-2xl gradient-primary text-primary-foreground font-semibold text-lg transition-all active:scale-[0.98] mt-6 glow-primary"
       >
         Odbierz za {reward.coins} monet
       </button>
