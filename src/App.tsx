@@ -14,6 +14,7 @@ import RewardDetails from "./pages/RewardDetails";
 import Stats from "./pages/Stats";
 import NotFound from "./pages/NotFound";
 import Profile from "./pages/Profile";
+import Leaderboard from "./pages/Leaderboard";
 
 const queryClient = new QueryClient();
 
