@@ -3,8 +3,16 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import Index from "./pages/Index.tsx";
-import NotFound from "./pages/NotFound.tsx";
+import MobileShell from "@/components/MobileShell";
+import Onboarding from "./pages/Onboarding";
+import HomeDashboard from "./pages/HomeDashboard";
+import FocusSession from "./pages/FocusSession";
+import SessionComplete from "./pages/SessionComplete";
+import Rewards from "./pages/Rewards";
+import RewardDetails from "./pages/RewardDetails";
+import Stats from "./pages/Stats";
+import Premium from "./pages/Premium";
+import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
@@ -14,11 +22,19 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <MobileShell>
+          <Routes>
+            <Route path="/" element={<Onboarding />} />
+            <Route path="/home" element={<HomeDashboard />} />
+            <Route path="/focus" element={<FocusSession />} />
+            <Route path="/session-complete" element={<SessionComplete />} />
+            <Route path="/rewards" element={<Rewards />} />
+            <Route path="/reward/:id" element={<RewardDetails />} />
+            <Route path="/stats" element={<Stats />} />
+            <Route path="/premium" element={<Premium />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </MobileShell>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
