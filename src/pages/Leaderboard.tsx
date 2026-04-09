@@ -12,9 +12,9 @@ const leaderboard = [
 ];
 
 const RankIcon = ({ rank }: { rank: number }) => {
-  if (rank === 1) return <Crown size={18} className="text-yellow-400" />;
-  if (rank === 2) return <Medal size={18} className="text-gray-300" />;
-  if (rank === 3) return <Award size={18} className="text-amber-600" />;
+  if (rank === 1) return <Crown size={18} style={{ color: "hsl(45 93% 47%)" }} />;
+  if (rank === 2) return <Medal size={18} style={{ color: "hsl(0 0% 77%)" }} />;
+  if (rank === 3) return <Award size={18} style={{ color: "hsl(30 60% 40%)" }} />;
   return <span className="text-xs font-bold text-muted-foreground w-[18px] text-center">{rank}</span>;
 };
 
