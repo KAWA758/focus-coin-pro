@@ -4,18 +4,18 @@ import { useNavigate } from "react-router-dom";
 const slides = [
   {
     emoji: "🎯",
-    title: "Earn rewards for not using your phone",
-    subtitle: "Put your phone down. Stack coins. Redeem real rewards.",
+    title: "Zarabiaj nagrody za nieużywanie telefonu",
+    subtitle: "Odłóż telefon. Zbieraj monety. Odbieraj prawdziwe nagrody.",
   },
   {
     emoji: "⏱️",
-    title: "Track your focus time",
-    subtitle: "Smart sessions that reward your attention span with FocusCoins.",
+    title: "Śledź swój czas skupienia",
+    subtitle: "Inteligentne sesje, które nagradzają Twoją uwagę monetami FocusCoin.",
   },
   {
     emoji: "🎁",
-    title: "Redeem premium rewards",
-    subtitle: "Nike, Spotify, Starbucks and more. Your focus has real value.",
+    title: "Odbieraj ekskluzywne nagrody",
+    subtitle: "Nike, Spotify, Starbucks i więcej. Twoje skupienie ma realną wartość.",
   },
 ];
 
@@ -30,7 +30,6 @@ const Onboarding = () => {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-between px-8 py-12">
-      {/* Dots */}
       <div className="flex gap-2 pt-4">
         {slides.map((_, i) => (
           <div
@@ -42,7 +41,6 @@ const Onboarding = () => {
         ))}
       </div>
 
-      {/* Content */}
       <div className="flex-1 flex flex-col items-center justify-center text-center gap-6 animate-fade-in" key={current}>
         <div className="w-32 h-32 rounded-full gradient-primary flex items-center justify-center glow-primary">
           <span className="text-6xl">{slides[current].emoji}</span>
@@ -55,12 +53,11 @@ const Onboarding = () => {
         </p>
       </div>
 
-      {/* CTA */}
       <button
         onClick={next}
         className="w-full py-4 rounded-2xl gradient-primary text-primary-foreground font-semibold text-lg transition-all active:scale-[0.98]"
       >
-        {current === slides.length - 1 ? "Get Started" : "Continue"}
+        {current === slides.length - 1 ? "Zaczynamy" : "Dalej"}
       </button>
     </div>
   );

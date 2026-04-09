@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { ThemeProvider } from "@/hooks/use-theme";
 import MobileShell from "@/components/MobileShell";
 import Onboarding from "./pages/Onboarding";
 import HomeDashboard from "./pages/HomeDashboard";
@@ -11,32 +12,32 @@ import SessionComplete from "./pages/SessionComplete";
 import Rewards from "./pages/Rewards";
 import RewardDetails from "./pages/RewardDetails";
 import Stats from "./pages/Stats";
-import Premium from "./pages/Premium";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <MobileShell>
-          <Routes>
-            <Route path="/" element={<Onboarding />} />
-            <Route path="/home" element={<HomeDashboard />} />
-            <Route path="/focus" element={<FocusSession />} />
-            <Route path="/session-complete" element={<SessionComplete />} />
-            <Route path="/rewards" element={<Rewards />} />
-            <Route path="/reward/:id" element={<RewardDetails />} />
-            <Route path="/stats" element={<Stats />} />
-            <Route path="/premium" element={<Premium />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </MobileShell>
-      </BrowserRouter>
-    </TooltipProvider>
+    <ThemeProvider>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <MobileShell>
+            <Routes>
+              <Route path="/" element={<Onboarding />} />
+              <Route path="/home" element={<HomeDashboard />} />
+              <Route path="/focus" element={<FocusSession />} />
+              <Route path="/session-complete" element={<SessionComplete />} />
+              <Route path="/rewards" element={<Rewards />} />
+              <Route path="/reward/:id" element={<RewardDetails />} />
+              <Route path="/stats" element={<Stats />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </MobileShell>
+        </BrowserRouter>
+      </TooltipProvider>
+    </ThemeProvider>
   </QueryClientProvider>
 );
 

@@ -1,12 +1,12 @@
 import { useNavigate } from "react-router-dom";
 
 const rewards = [
-  { id: "1", brand: "Spotify", title: "1 Month Premium", coins: 300, emoji: "🎵", color: "hsl(141 73% 42%)" },
-  { id: "2", brand: "Nike", title: "15% Off Coupon", coins: 500, emoji: "👟", color: "hsl(0 0% 10%)" },
-  { id: "3", brand: "Starbucks", title: "Free Latte", coins: 150, emoji: "☕", color: "hsl(152 40% 30%)" },
-  { id: "4", brand: "Netflix", title: "1 Week Free", coins: 400, emoji: "🎬", color: "hsl(0 75% 50%)" },
-  { id: "5", brand: "Amazon", title: "€5 Gift Card", coins: 600, emoji: "📦", color: "hsl(33 100% 50%)" },
-  { id: "6", brand: "Uber Eats", title: "Free Delivery", coins: 200, emoji: "🍔", color: "hsl(148 60% 45%)" },
+  { id: "1", brand: "Spotify", title: "1 miesiąc Premium", coins: 300, emoji: "🎵", color: "hsl(141 73% 42%)" },
+  { id: "2", brand: "Nike", title: "Kupon -15%", coins: 500, emoji: "👟", color: "hsl(0 0% 10%)" },
+  { id: "3", brand: "Starbucks", title: "Darmowe latte", coins: 150, emoji: "☕", color: "hsl(152 40% 30%)" },
+  { id: "4", brand: "Netflix", title: "1 tydzień gratis", coins: 400, emoji: "🎬", color: "hsl(0 75% 50%)" },
+  { id: "5", brand: "Amazon", title: "Karta podarunkowa 20 zł", coins: 600, emoji: "📦", color: "hsl(33 100% 50%)" },
+  { id: "6", brand: "Uber Eats", title: "Darmowa dostawa", coins: 200, emoji: "🍔", color: "hsl(148 60% 45%)" },
 ];
 
 const Rewards = () => {
@@ -14,17 +14,15 @@ const Rewards = () => {
 
   return (
     <div className="px-5 pt-14 pb-6 animate-fade-in">
-      <h1 className="text-2xl font-bold text-foreground mb-1">Rewards</h1>
-      <p className="text-sm text-muted-foreground mb-6">Redeem your FocusCoins for real rewards</p>
+      <h1 className="text-2xl font-bold text-foreground mb-1">Nagrody</h1>
+      <p className="text-sm text-muted-foreground mb-6">Wymień FocusCoins na prawdziwe nagrody</p>
 
-      {/* Balance pill */}
       <div className="flex items-center gap-2 mb-6">
         <span className="text-lg">🪙</span>
         <span className="font-bold text-foreground">1,240</span>
-        <span className="text-sm text-muted-foreground">available</span>
+        <span className="text-sm text-muted-foreground">dostępnych</span>
       </div>
 
-      {/* Grid */}
       <div className="grid grid-cols-2 gap-3">
         {rewards.map((r) => (
           <button

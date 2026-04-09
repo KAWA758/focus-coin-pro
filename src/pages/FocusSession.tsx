@@ -15,7 +15,7 @@ const FocusSession = () => {
 
   const mins = Math.floor(seconds / 60);
   const secs = seconds % 60;
-  const coins = Math.floor(seconds / 6); // ~10 coins per minute
+  const coins = Math.floor(seconds / 6);
 
   const end = () => {
     setRunning(false);
@@ -23,9 +23,8 @@ const FocusSession = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background dark flex flex-col items-center justify-between px-8 py-12 relative overflow-hidden"
+    <div className="min-h-screen flex flex-col items-center justify-between px-8 py-12 relative overflow-hidden"
       style={{ background: "linear-gradient(180deg, hsl(230 25% 7%) 0%, hsl(258 40% 12%) 100%)" }}>
-      {/* Glow effect */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 rounded-full opacity-30"
         style={{
           background: "radial-gradient(circle, hsl(258 80% 56% / 0.4) 0%, transparent 70%)",
@@ -33,20 +32,20 @@ const FocusSession = () => {
         }}
       />
 
-      {/* Top bar */}
       <div className="w-full flex justify-between items-center z-10">
-        <button onClick={() => navigate("/home")} className="text-muted-foreground p-2">
+        <button onClick={() => navigate("/home")} className="p-2" style={{ color: "hsl(230 10% 50%)" }}>
           <X size={24} />
         </button>
-        <span className="text-xs font-medium text-muted-foreground bg-secondary/20 px-3 py-1 rounded-full">
-          x3 multiplier active
+        <span className="text-xs font-medium px-3 py-1 rounded-full"
+          style={{ color: "hsl(230 10% 60%)", background: "hsl(0 0% 100% / 0.08)" }}>
+          mnożnik x3 aktywny
         </span>
       </div>
 
-      {/* Timer */}
       <div className="flex flex-col items-center gap-4 z-10 animate-scale-in">
-        <p className="text-sm font-medium text-muted-foreground tracking-widest uppercase">
-          Earning FocusCoins
+        <p className="text-sm font-medium tracking-widest uppercase"
+          style={{ color: "hsl(230 10% 50%)" }}>
+          Zarabiasz FocusCoins
         </p>
         <h1 className="text-7xl font-extrabold tracking-tight"
           style={{ color: "hsl(0 0% 95%)" }}>
@@ -60,7 +59,6 @@ const FocusSession = () => {
         </div>
       </div>
 
-      {/* End button */}
       <button
         onClick={end}
         className="w-full py-4 rounded-2xl border-2 font-semibold text-lg transition-all active:scale-[0.98] z-10"
@@ -70,7 +68,7 @@ const FocusSession = () => {
           background: "hsl(258 80% 56% / 0.1)",
         }}
       >
-        End Session
+        Zakończ sesję
       </button>
     </div>
   );
