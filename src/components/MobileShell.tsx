@@ -1,17 +1,16 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { Home, Gift, BarChart3, Sun, Moon } from "lucide-react";
-import { useTheme } from "@/hooks/use-theme";
+import { Home, Gift, BarChart3, Trophy } from "lucide-react";
 
 const tabs = [
   { path: "/home", icon: Home, label: "Start" },
   { path: "/rewards", icon: Gift, label: "Nagrody" },
+  { path: "/leaderboard", icon: Trophy, label: "Ranking" },
   { path: "/stats", icon: BarChart3, label: "Statystyki" },
 ];
 
 const MobileShell = ({ children }: { children: React.ReactNode }) => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { theme, toggle } = useTheme();
 
   const hideNav = ["/", "/focus", "/session-complete", "/profile"].some(
     (p) => location.pathname === p || location.pathname.startsWith("/reward/")
@@ -40,18 +39,6 @@ const MobileShell = ({ children }: { children: React.ReactNode }) => {
                 </button>
               );
             })}
-            {/* Dark mode toggle */}
-            <button
-              onClick={toggle}
-              className="flex flex-col items-center gap-0.5 py-1.5 px-3 rounded-xl text-muted-foreground hover:text-foreground transition-all"
-            >
-              {theme === "dark" ? (
-                <Sun size={22} strokeWidth={1.8} className="transition-transform duration-300 rotate-0 hover:rotate-90" />
-              ) : (
-                <Moon size={22} strokeWidth={1.8} className="transition-transform duration-300 rotate-0 hover:-rotate-12" />
-              )}
-              <span className="text-[10px] font-medium">Tryb</span>
-            </button>
           </div>
         </nav>
       )}
