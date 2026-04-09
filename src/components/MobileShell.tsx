@@ -13,7 +13,7 @@ const MobileShell = ({ children }: { children: React.ReactNode }) => {
   const navigate = useNavigate();
   const { theme, toggle } = useTheme();
 
-  const hideNav = ["/", "/focus", "/session-complete"].some(
+  const hideNav = ["/", "/focus", "/session-complete", "/profile"].some(
     (p) => location.pathname === p || location.pathname.startsWith("/reward/")
   );
 

@@ -13,6 +13,7 @@ import Rewards from "./pages/Rewards";
 import RewardDetails from "./pages/RewardDetails";
 import Stats from "./pages/Stats";
 import NotFound from "./pages/NotFound";
+import Profile from "./pages/Profile";
 
 const queryClient = new QueryClient();
 
@@ -32,6 +33,7 @@ const App = () => (
               <Route path="/rewards" element={<Rewards />} />
               <Route path="/reward/:id" element={<RewardDetails />} />
               <Route path="/stats" element={<Stats />} />
+              <Route path="/profile" element={<Profile />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </MobileShell>

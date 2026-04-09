@@ -1,80 +1,114 @@
 import { useNavigate } from "react-router-dom";
-import { Flame, Zap, Clock, ChevronRight } from "lucide-react";
+import { Flame, Zap, Clock, ChevronRight, User, Target, TrendingUp, Gift } from "lucide-react";
 
 const HomeDashboard = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="px-5 pt-14 pb-6 animate-fade-in">
-      <div className="flex items-center justify-between mb-8">
+    <div className="animate-fade-in">
+      {/* Header */}
+      <div className="px-5 pt-14 pb-2 flex items-center justify-between">
         <div>
-          <p className="text-sm text-muted-foreground font-medium">Dzień dobry 👋</p>
+          <p className="text-sm text-muted-foreground font-medium">Dzień dobry</p>
           <h2 className="text-lg font-semibold text-foreground">Alex</h2>
         </div>
-        <div className="w-10 h-10 rounded-full gradient-primary flex items-center justify-center text-primary-foreground font-bold text-sm">
-          A
+        <button
+          onClick={() => navigate("/profile")}
+          className="w-10 h-10 rounded-full gradient-primary flex items-center justify-center text-primary-foreground"
+        >
+          <User size={18} />
+        </button>
+      </div>
+
+      {/* Balance card with neon accent like reference */}
+      <div className="px-5 pt-4 pb-2">
+        <div className="rounded-2xl p-6 relative overflow-hidden" style={{
+          background: "linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--neon)) 100%)",
+        }}>
+          <div className="absolute inset-0 opacity-20" style={{
+            background: "radial-gradient(circle at 90% 10%, hsl(0 0% 100% / 0.3) 0%, transparent 50%)"
+          }} />
+          <div className="relative z-10">
+            <p className="text-primary-foreground/70 text-sm font-medium mb-1">Dostępne saldo</p>
+            <h1 className="text-4xl font-extrabold text-primary-foreground tracking-tight">1,240</h1>
+            <p className="text-primary-foreground/80 text-sm font-medium mt-0.5">FocusCoins</p>
+            <div className="flex items-center gap-2 mt-3">
+              <span className="text-xs text-primary-foreground/90 bg-primary-foreground/15 px-2.5 py-0.5 rounded-full flex items-center gap-1">
+                <TrendingUp size={12} /> +125 dzisiaj
+              </span>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div className="gradient-primary rounded-2xl p-6 mb-6 glow-primary">
-        <p className="text-primary-foreground/70 text-sm font-medium mb-1">Dostępne saldo</p>
-        <h1 className="text-4xl font-extrabold text-primary-foreground tracking-tight">1,240</h1>
-        <p className="text-primary-foreground/80 text-sm font-medium mt-0.5">FocusCoins</p>
-        <div className="flex items-center gap-1 mt-3">
-          <span className="text-xs text-primary-foreground/60 bg-primary-foreground/10 px-2 py-0.5 rounded-full">
-            +125 dzisiaj
-          </span>
-        </div>
+      {/* Stats section divider */}
+      <div className="px-5 pt-5 pb-2">
+        <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Podsumowanie dnia</p>
       </div>
 
-      <div className="grid grid-cols-3 gap-3 mb-6">
+      <div className="px-5 grid grid-cols-3 gap-3 mb-2">
         <div className="bg-card rounded-xl p-4 card-shadow text-center">
-          <Clock size={20} className="mx-auto mb-2 text-accent" />
+          <div className="w-8 h-8 rounded-lg bg-accent/10 flex items-center justify-center mx-auto mb-2">
+            <Clock size={18} className="text-accent" />
+          </div>
           <p className="text-xl font-bold text-foreground">2h 14m</p>
           <p className="text-[10px] text-muted-foreground font-medium mt-0.5">Dziś skupienie</p>
         </div>
         <div className="bg-card rounded-xl p-4 card-shadow text-center">
-          <Flame size={20} className="mx-auto mb-2 text-destructive" />
+          <div className="w-8 h-8 rounded-lg bg-destructive/10 flex items-center justify-center mx-auto mb-2">
+            <Flame size={18} className="text-destructive" />
+          </div>
           <p className="text-xl font-bold text-foreground">3 dni</p>
-          <p className="text-[10px] text-muted-foreground font-medium mt-0.5">Seria 🔥</p>
+          <p className="text-[10px] text-muted-foreground font-medium mt-0.5">Seria</p>
         </div>
         <div className="bg-card rounded-xl p-4 card-shadow text-center">
-          <Zap size={20} className="mx-auto mb-2 text-neon" />
+          <div className="w-8 h-8 rounded-lg bg-neon/10 flex items-center justify-center mx-auto mb-2">
+            <Zap size={18} className="text-neon" />
+          </div>
           <p className="text-xl font-bold text-foreground">x3</p>
           <p className="text-[10px] text-muted-foreground font-medium mt-0.5">Mnożnik</p>
         </div>
       </div>
 
-      <div className="mb-6">
-        <div className="flex items-center justify-between mb-3">
-          <h3 className="font-semibold text-foreground">Ostatnia aktywność</h3>
+      {/* Activity section divider */}
+      <div className="px-5 pt-5 pb-2">
+        <div className="flex items-center justify-between">
+          <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Ostatnia aktywność</p>
           <button className="text-xs text-primary font-medium">Zobacz wszystko</button>
         </div>
-        {[
-          { label: "Sesja skupienia", coins: "+25", time: "2h temu", icon: "🎯" },
-          { label: "Bonus dzienny", coins: "+50", time: "5h temu", icon: "🎁" },
-          { label: "Nagroda za serię", coins: "+50", time: "1d temu", icon: "🔥" },
-        ].map((item, i) => (
-          <div key={i} className="flex items-center gap-3 py-3 border-b border-border last:border-0">
-            <div className="w-10 h-10 rounded-xl bg-secondary flex items-center justify-center text-lg">
-              {item.icon}
-            </div>
-            <div className="flex-1">
-              <p className="text-sm font-medium text-foreground">{item.label}</p>
-              <p className="text-xs text-muted-foreground">{item.time}</p>
-            </div>
-            <span className="text-sm font-semibold text-neon">{item.coins}</span>
-          </div>
-        ))}
       </div>
 
-      <button
-        onClick={() => navigate("/focus")}
-        className="w-full py-4 rounded-2xl gradient-primary text-primary-foreground font-semibold text-lg transition-all active:scale-[0.98] flex items-center justify-center gap-2"
-      >
-        Rozpocznij sesję
-        <ChevronRight size={20} />
-      </button>
+      <div className="px-5 mb-4">
+        <div className="bg-card rounded-2xl card-shadow divide-y divide-border overflow-hidden">
+          {[
+            { label: "Sesja skupienia", coins: "+25", time: "2h temu", icon: Target, iconColor: "text-primary" },
+            { label: "Bonus dzienny", coins: "+50", time: "5h temu", icon: Gift, iconColor: "text-neon" },
+            { label: "Nagroda za serię", coins: "+50", time: "1d temu", icon: Flame, iconColor: "text-destructive" },
+          ].map((item, i) => (
+            <div key={i} className="flex items-center gap-3 px-4 py-3.5">
+              <div className="w-10 h-10 rounded-xl bg-secondary flex items-center justify-center">
+                <item.icon size={18} className={item.iconColor} />
+              </div>
+              <div className="flex-1">
+                <p className="text-sm font-medium text-foreground">{item.label}</p>
+                <p className="text-xs text-muted-foreground">{item.time}</p>
+              </div>
+              <span className="text-sm font-semibold text-neon">{item.coins}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* CTA */}
+      <div className="px-5 pb-6">
+        <button
+          onClick={() => navigate("/focus")}
+          className="w-full py-4 rounded-2xl gradient-primary text-primary-foreground font-semibold text-lg transition-all active:scale-[0.98] flex items-center justify-center gap-2 glow-primary"
+        >
+          Rozpocznij sesję
+          <ChevronRight size={20} />
+        </button>
+      </div>
     </div>
   );
 };
