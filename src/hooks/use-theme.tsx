@@ -1,14 +1,14 @@
 import { useState, useEffect, useCallback, createContext, useContext } from "react";
 
-type Theme = "light" | "dark";
+type Theme = "light" | "dark" | "liquid-glass" | "y2k";
 
-const ThemeContext = createContext<{ theme: Theme; toggle: () => void }>({
+const ThemeContext = createContext<{ theme: Theme; setTheme: (t: Theme) => void }>({
   theme: "light",
-  toggle: () => {},
+  setTheme: () => {},
 });
 
 export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
-  const [theme, setTheme] = useState<Theme>(() => {
+  const [theme, setThemeState] = useState<Theme>(() => {
     if (typeof window !== "undefined") {
       const stored = localStorage.getItem("focuscoin-theme") as Theme;
       if (stored) return stored;
@@ -19,16 +19,17 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
 
   useEffect(() => {
     const root = document.documentElement;
-    root.classList.toggle("dark", theme === "dark");
+    root.classList.remove("dark", "liquid-glass", "y2k");
+    if (theme === "dark") root.classList.add("dark");
+    if (theme === "liquid-glass") root.classList.add("liquid-glass");
+    if (theme === "y2k") root.classList.add("y2k");
     localStorage.setItem("focuscoin-theme", theme);
   }, [theme]);
 
-  const toggle = useCallback(() => {
-    setTheme((t) => (t === "dark" ? "light" : "dark"));
-  }, []);
+  const setTheme = useCallback((t: Theme) => setThemeState(t), []);
 
   return (
-    <ThemeContext.Provider value={{ theme, toggle }}>
+    <ThemeContext.Provider value={{ theme, setTheme }}>
       {children}
     </ThemeContext.Provider>
   );

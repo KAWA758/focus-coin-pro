@@ -1,5 +1,14 @@
 import { useNavigate } from "react-router-dom";
-import { Flame, Zap, Clock, ChevronRight, User, Target, TrendingUp, Gift } from "lucide-react";
+import { Flame, Zap, Clock, ChevronRight, User, Target, TrendingUp, Gift, TrendingDown, Coins } from "lucide-react";
+import StreakCalendar from "@/components/StreakCalendar";
+
+const balanceHistory = [
+  { label: "Sesja skupienia", coins: "+25", time: "2h temu", icon: Target, iconColor: "text-primary", positive: true },
+  { label: "Bonus dzienny", coins: "+50", time: "5h temu", icon: Gift, iconColor: "text-neon", positive: true },
+  { label: "Nagroda za serię", coins: "+50", time: "1d temu", icon: Flame, iconColor: "text-destructive", positive: true },
+  { label: "Spotify Premium", coins: "-300", time: "2d temu", icon: Coins, iconColor: "text-muted-foreground", positive: false },
+  { label: "Sesja skupienia", coins: "+40", time: "3d temu", icon: Target, iconColor: "text-primary", positive: true },
+];
 
 const HomeDashboard = () => {
   const navigate = useNavigate();
@@ -20,7 +29,7 @@ const HomeDashboard = () => {
         </button>
       </div>
 
-      {/* Balance card with neon accent like reference */}
+      {/* Balance card */}
       <div className="px-5 pt-4 pb-2">
         <div className="rounded-2xl p-6 relative overflow-hidden" style={{
           background: "linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--neon)) 100%)",
@@ -41,7 +50,7 @@ const HomeDashboard = () => {
         </div>
       </div>
 
-      {/* Stats section divider */}
+      {/* Stats */}
       <div className="px-5 pt-5 pb-2">
         <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Podsumowanie dnia</p>
       </div>
@@ -70,21 +79,25 @@ const HomeDashboard = () => {
         </div>
       </div>
 
-      {/* Activity section divider */}
+      {/* Streak Calendar */}
+      <div className="px-5 pt-5 pb-2">
+        <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Seria skupienia</p>
+      </div>
+      <div className="px-5 mb-2">
+        <StreakCalendar />
+      </div>
+
+      {/* Balance record */}
       <div className="px-5 pt-5 pb-2">
         <div className="flex items-center justify-between">
-          <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Ostatnia aktywność</p>
+          <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Historia salda</p>
           <button className="text-xs text-primary font-medium">Zobacz wszystko</button>
         </div>
       </div>
 
       <div className="px-5 mb-4">
         <div className="bg-card rounded-2xl card-shadow divide-y divide-border overflow-hidden">
-          {[
-            { label: "Sesja skupienia", coins: "+25", time: "2h temu", icon: Target, iconColor: "text-primary" },
-            { label: "Bonus dzienny", coins: "+50", time: "5h temu", icon: Gift, iconColor: "text-neon" },
-            { label: "Nagroda za serię", coins: "+50", time: "1d temu", icon: Flame, iconColor: "text-destructive" },
-          ].map((item, i) => (
+          {balanceHistory.map((item, i) => (
             <div key={i} className="flex items-center gap-3 px-4 py-3.5">
               <div className="w-10 h-10 rounded-xl bg-secondary flex items-center justify-center">
                 <item.icon size={18} className={item.iconColor} />
@@ -93,7 +106,16 @@ const HomeDashboard = () => {
                 <p className="text-sm font-medium text-foreground">{item.label}</p>
                 <p className="text-xs text-muted-foreground">{item.time}</p>
               </div>
-              <span className="text-sm font-semibold text-neon">{item.coins}</span>
+              <div className="flex items-center gap-1">
+                {item.positive ? (
+                  <TrendingUp size={12} className="text-neon" />
+                ) : (
+                  <TrendingDown size={12} className="text-destructive" />
+                )}
+                <span className={`text-sm font-semibold ${item.positive ? "text-neon" : "text-destructive"}`}>
+                  {item.coins}
+                </span>
+              </div>
             </div>
           ))}
         </div>
