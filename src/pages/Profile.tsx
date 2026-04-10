@@ -1,12 +1,19 @@
 import { useNavigate } from "react-router-dom";
-import { ArrowLeft, User, Globe, Moon, Sun, Info, ChevronRight, Code, Smartphone, Heart } from "lucide-react";
+import { ArrowLeft, User, Globe, Moon, Sun, Info, ChevronRight, Code, Smartphone, Heart, Sparkles, Palette } from "lucide-react";
 import { useTheme } from "@/hooks/use-theme";
 import { useState } from "react";
 
+const themes = [
+  { id: "light" as const, label: "Jasny", icon: Sun, desc: "Klasyczny jasny motyw" },
+  { id: "dark" as const, label: "Ciemny", icon: Moon, desc: "Tryb nocny" },
+  { id: "liquid-glass" as const, label: "Liquid Glass", icon: Sparkles, desc: "Przezroczysty szkło" },
+  { id: "y2k" as const, label: "Y2K", icon: Palette, desc: "Retro futuryzm" },
+];
+
 const Profile = () => {
   const navigate = useNavigate();
-  const { theme, toggle } = useTheme();
-  const [language, setLanguage] = useState("pl");
+  const { theme, setTheme } = useTheme();
+  const [language] = useState("pl");
 
   return (
     <div className="min-h-screen bg-background animate-fade-in">
@@ -44,26 +51,39 @@ const Profile = () => {
           <span className="text-xs text-neon font-semibold bg-neon/10 px-2.5 py-1 rounded-full">+125 dzisiaj</span>
         </div>
 
+        {/* Theme selector */}
+        <div>
+          <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider px-1 mb-2">Motyw</p>
+          <div className="grid grid-cols-2 gap-2">
+            {themes.map((t) => {
+              const active = theme === t.id;
+              return (
+                <button
+                  key={t.id}
+                  onClick={() => setTheme(t.id)}
+                  className={`bg-card rounded-2xl p-3.5 card-shadow text-left transition-all ${
+                    active ? "ring-2 ring-primary" : "hover:shadow-lg"
+                  }`}
+                >
+                  <div className="flex items-center gap-2.5 mb-1">
+                    <div className={`w-8 h-8 rounded-xl flex items-center justify-center ${
+                      active ? "gradient-primary" : "bg-secondary"
+                    }`}>
+                      <t.icon size={16} className={active ? "text-primary-foreground" : "text-muted-foreground"} />
+                    </div>
+                    <p className={`text-sm font-semibold ${active ? "text-primary" : "text-foreground"}`}>{t.label}</p>
+                  </div>
+                  <p className="text-[10px] text-muted-foreground ml-[42px]">{t.desc}</p>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
         {/* Preferences section */}
         <div>
           <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider px-1 mb-2">Preferencje</p>
           <div className="bg-card rounded-2xl card-shadow overflow-hidden divide-y divide-border">
-            {/* Dark mode */}
-            <button onClick={toggle} className="w-full flex items-center justify-between p-4 transition-colors hover:bg-secondary/50">
-              <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-xl bg-secondary flex items-center justify-center">
-                  {theme === "dark" ? <Moon size={18} className="text-primary" /> : <Sun size={18} className="text-primary" />}
-                </div>
-                <div className="text-left">
-                  <p className="text-sm font-medium text-foreground">Tryb ciemny</p>
-                  <p className="text-xs text-muted-foreground">{theme === "dark" ? "Włączony" : "Wyłączony"}</p>
-                </div>
-              </div>
-              <div className={`w-11 h-6 rounded-full transition-colors relative ${theme === "dark" ? "bg-primary" : "bg-border"}`}>
-                <div className={`w-5 h-5 rounded-full bg-primary-foreground absolute top-0.5 transition-transform shadow-sm ${theme === "dark" ? "translate-x-[22px]" : "translate-x-0.5"}`} />
-              </div>
-            </button>
-
             {/* Language */}
             <div className="flex items-center justify-between p-4">
               <div className="flex items-center gap-3">
