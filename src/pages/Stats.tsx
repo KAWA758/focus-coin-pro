@@ -1,4 +1,4 @@
-import { BarChart, Bar, XAxis, ResponsiveContainer, LineChart, Line, Tooltip } from "recharts";
+import { BarChart, Bar, XAxis, ResponsiveContainer, LineChart, Line, Tooltip, Cell } from "recharts";
 import { Clock, Coins, Flame } from "lucide-react";
 
 const weeklyData = [
@@ -20,6 +20,8 @@ const coinsData = [
   { day: "Sob", coins: 35 },
   { day: "Nd", coins: 62 },
 ];
+
+const maxHours = Math.max(...weeklyData.map((d) => d.hours));
 
 const Stats = () => (
   <div className="animate-fade-in">
@@ -61,7 +63,13 @@ const Stats = () => (
           <BarChart data={weeklyData}>
             <XAxis dataKey="day" tick={{ fontSize: 11, fill: "hsl(230 10% 50%)" }} axisLine={false} tickLine={false} />
             <Tooltip contentStyle={{ background: "hsl(var(--card))", border: "1px solid hsl(var(--border))", borderRadius: 12, fontSize: 12 }} />
-            <Bar dataKey="hours" fill="hsl(258 80% 56%)" radius={[6, 6, 0, 0]} />
+            <Bar dataKey="hours" radius={[6, 6, 0, 0]}>
+              {weeklyData.map((entry, index) => {
+                const intensity = entry.hours / maxHours;
+                const lightness = 56 - intensity * 20;
+                return <Cell key={index} fill={`hsl(258 80% ${lightness}%)`} />;
+              })}
+            </Bar>
           </BarChart>
         </ResponsiveContainer>
       </div>

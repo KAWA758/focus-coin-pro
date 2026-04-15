@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { X } from "lucide-react";
+import { useCoins } from "@/hooks/use-coins";
 
 const FocusSession = () => {
   const navigate = useNavigate();
+  const { addCoins, addHistory } = useCoins();
   const [seconds, setSeconds] = useState(0);
   const [running, setRunning] = useState(true);
 
@@ -19,7 +21,10 @@ const FocusSession = () => {
 
   const end = () => {
     setRunning(false);
-    navigate("/session-complete", { state: { coins: Math.max(coins, 25), minutes: mins } });
+    const earned = Math.max(coins, 25);
+    addCoins(earned);
+    addHistory({ label: "Sesja skupienia", coins: `+${earned}`, time: "teraz", positive: true });
+    navigate("/session-complete", { state: { coins: earned, minutes: mins } });
   };
 
   return (
