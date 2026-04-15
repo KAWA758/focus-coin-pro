@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Manrope:wght@300;400;500;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,33 +6,33 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 230 25% 10%;
-    --card: 0 0% 100%;
-    --card-foreground: 230 25% 10%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 230 25% 10%;
-    --primary: 258 80% 56%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 230 15% 95%;
-    --secondary-foreground: 230 25% 10%;
-    --muted: 230 15% 96%;
-    --muted-foreground: 230 10% 50%;
-    --accent: 220 70% 55%;
-    --accent-foreground: 0 0% 100%;
+    --background: 250 20% 97%;
+    --foreground: 240 20% 12%;
+    --card: 250 25% 99%;
+    --card-foreground: 240 20% 12%;
+    --popover: 250 25% 99%;
+    --popover-foreground: 240 20% 12%;
+    --primary: 249 90% 75%;
+    --primary-foreground: 240 30% 12%;
+    --secondary: 250 20% 94%;
+    --secondary-foreground: 240 20% 12%;
+    --muted: 250 15% 95%;
+    --muted-foreground: 240 10% 48%;
+    --accent: 192 85% 69%;
+    --accent-foreground: 240 30% 12%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
-    --border: 230 15% 92%;
-    --input: 230 15% 92%;
-    --ring: 258 80% 56%;
+    --border: 250 20% 91%;
+    --input: 250 20% 91%;
+    --ring: 249 90% 75%;
     --radius: 1rem;
 
-    --neon: 170 80% 50%;
-    --neon-foreground: 0 0% 100%;
-    --gradient-start: 258 80% 56%;
-    --gradient-end: 220 70% 55%;
-    --surface: 230 20% 98%;
-    --surface-foreground: 230 25% 10%;
+    --neon: 192 85% 69%;
+    --neon-foreground: 240 30% 12%;
+    --gradient-start: 249 90% 75%;
+    --gradient-end: 235 85% 68%;
+    --surface: 250 20% 97%;
+    --surface-foreground: 240 20% 12%;
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -45,58 +45,58 @@
   }
 
   .dark {
-    --background: 230 25% 7%;
-    --foreground: 0 0% 95%;
-    --card: 230 20% 11%;
-    --card-foreground: 0 0% 95%;
-    --popover: 230 20% 11%;
-    --popover-foreground: 0 0% 95%;
-    --primary: 258 80% 62%;
+    --background: 240 20% 6%;
+    --foreground: 250 30% 95%;
+    --card: 240 18% 10%;
+    --card-foreground: 250 30% 95%;
+    --popover: 240 18% 10%;
+    --popover-foreground: 250 30% 95%;
+    --primary: 249 90% 75%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 230 15% 18%;
-    --secondary-foreground: 0 0% 95%;
-    --muted: 230 15% 18%;
-    --muted-foreground: 230 10% 60%;
-    --accent: 220 70% 60%;
+    --secondary: 240 15% 16%;
+    --secondary-foreground: 250 30% 95%;
+    --muted: 240 15% 16%;
+    --muted-foreground: 240 10% 58%;
+    --accent: 192 85% 69%;
     --accent-foreground: 0 0% 100%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 95%;
-    --border: 230 15% 20%;
-    --input: 230 15% 20%;
-    --ring: 258 80% 62%;
+    --border: 240 15% 18%;
+    --input: 240 15% 18%;
+    --ring: 249 90% 75%;
 
-    --neon: 170 80% 55%;
-    --surface: 230 20% 12%;
-    --surface-foreground: 0 0% 95%;
+    --neon: 192 85% 69%;
+    --surface: 240 18% 12%;
+    --surface-foreground: 250 30% 95%;
   }
 
   /* Liquid Glass Theme */
   .liquid-glass {
-    --background: 220 30% 96%;
-    --foreground: 220 20% 15%;
-    --card: 220 20% 98%;
-    --card-foreground: 220 20% 15%;
-    --popover: 220 20% 98%;
-    --popover-foreground: 220 20% 15%;
-    --primary: 220 90% 56%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 220 20% 92%;
-    --secondary-foreground: 220 20% 15%;
-    --muted: 220 15% 94%;
-    --muted-foreground: 220 10% 45%;
-    --accent: 260 70% 60%;
-    --accent-foreground: 0 0% 100%;
+    --background: 240 25% 96%;
+    --foreground: 240 20% 15%;
+    --card: 240 20% 98%;
+    --card-foreground: 240 20% 15%;
+    --popover: 240 20% 98%;
+    --popover-foreground: 240 20% 15%;
+    --primary: 249 90% 75%;
+    --primary-foreground: 240 30% 12%;
+    --secondary: 240 20% 92%;
+    --secondary-foreground: 240 20% 15%;
+    --muted: 240 15% 94%;
+    --muted-foreground: 240 10% 45%;
+    --accent: 192 85% 69%;
+    --accent-foreground: 240 30% 12%;
     --destructive: 0 80% 60%;
     --destructive-foreground: 0 0% 100%;
-    --border: 220 20% 88%;
-    --input: 220 20% 88%;
-    --ring: 220 90% 56%;
+    --border: 240 20% 88%;
+    --input: 240 20% 88%;
+    --ring: 249 90% 75%;
 
-    --neon: 190 90% 50%;
-    --gradient-start: 220 90% 56%;
-    --gradient-end: 260 70% 60%;
-    --surface: 220 25% 95%;
-    --surface-foreground: 220 20% 15%;
+    --neon: 192 85% 69%;
+    --gradient-start: 249 90% 75%;
+    --gradient-end: 192 85% 69%;
+    --surface: 240 25% 95%;
+    --surface-foreground: 240 20% 15%;
   }
 
   /* Y2K Theme */
@@ -135,13 +135,16 @@
   }
   body {
     @apply bg-background text-foreground font-sans antialiased;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Manrope', system-ui, sans-serif;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Sora', system-ui, sans-serif;
   }
 }
 
 /* Liquid Glass specific overrides */
 .liquid-glass body {
-  background: linear-gradient(135deg, hsl(220 40% 94%), hsl(260 30% 92%), hsl(200 40% 94%));
+  background: linear-gradient(135deg, hsl(250 30% 95%), hsl(220 40% 93%), hsl(280 25% 94%));
   background-attachment: fixed;
 }
 
@@ -154,7 +157,7 @@
 }
 
 .liquid-glass .card-shadow {
-  box-shadow: 0 8px 32px hsl(220 50% 50% / 0.1), inset 0 1px 0 hsl(0 0% 100% / 0.7);
+  box-shadow: 0 8px 32px hsl(250 50% 50% / 0.1), inset 0 1px 0 hsl(0 0% 100% / 0.7);
 }
 
 .liquid-glass nav,
@@ -166,11 +169,11 @@
 }
 
 .liquid-glass .gradient-primary {
-  background: linear-gradient(135deg, hsl(220 90% 56% / 0.9), hsl(260 70% 60% / 0.9));
+  background: linear-gradient(135deg, hsl(249 90% 75% / 0.9), hsl(192 85% 69% / 0.9));
 }
 
 .liquid-glass .bg-secondary {
-  background: hsl(220 20% 92% / 0.5) !important;
+  background: hsl(240 20% 92% / 0.5) !important;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 }
@@ -210,6 +213,9 @@
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
+  .gradient-vapor {
+    background: linear-gradient(135deg, hsl(249 90% 75%), hsl(235 85% 68%), hsl(192 85% 69%), hsl(192 90% 82%));
+  }
   .glow-primary {
     box-shadow: 0 0 40px hsl(var(--primary) / 0.3), 0 0 80px hsl(var(--primary) / 0.15);
   }
@@ -247,4 +253,9 @@
   0% { transform: scale(0.5); opacity: 0; }
   60% { transform: scale(1.2); }
   100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
 }
