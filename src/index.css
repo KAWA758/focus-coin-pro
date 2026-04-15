@@ -74,28 +74,28 @@
   .liquid-glass {
     --background: 220 30% 96%;
     --foreground: 220 20% 15%;
-    --card: 0 0% 100% / 0.55;
+    --card: 220 20% 98%;
     --card-foreground: 220 20% 15%;
-    --popover: 0 0% 100% / 0.7;
+    --popover: 220 20% 98%;
     --popover-foreground: 220 20% 15%;
     --primary: 220 90% 56%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 220 20% 92% / 0.5;
+    --secondary: 220 20% 92%;
     --secondary-foreground: 220 20% 15%;
-    --muted: 220 15% 94% / 0.4;
+    --muted: 220 15% 94%;
     --muted-foreground: 220 10% 45%;
     --accent: 260 70% 60%;
     --accent-foreground: 0 0% 100%;
     --destructive: 0 80% 60%;
     --destructive-foreground: 0 0% 100%;
-    --border: 220 20% 88% / 0.6;
-    --input: 220 20% 88% / 0.6;
+    --border: 220 20% 88%;
+    --input: 220 20% 88%;
     --ring: 220 90% 56%;
 
     --neon: 190 90% 50%;
     --gradient-start: 220 90% 56%;
     --gradient-end: 260 70% 60%;
-    --surface: 220 25% 95% / 0.4;
+    --surface: 220 25% 95%;
     --surface-foreground: 220 20% 15%;
   }
 
@@ -142,24 +142,42 @@
 /* Liquid Glass specific overrides */
 .liquid-glass body {
   background: linear-gradient(135deg, hsl(220 40% 94%), hsl(260 30% 92%), hsl(200 40% 94%));
+  background-attachment: fixed;
 }
 
-.liquid-glass .bg-card {
-  background: hsl(0 0% 100% / 0.45) !important;
-  backdrop-filter: blur(20px) saturate(1.5);
-  -webkit-backdrop-filter: blur(20px) saturate(1.5);
-  border: 1px solid hsl(0 0% 100% / 0.4);
+.liquid-glass .bg-card,
+.liquid-glass .bg-card[class] {
+  background: hsl(0 0% 100% / 0.5) !important;
+  backdrop-filter: blur(24px) saturate(1.6);
+  -webkit-backdrop-filter: blur(24px) saturate(1.6);
+  border: 1px solid hsl(0 0% 100% / 0.5);
 }
 
 .liquid-glass .card-shadow {
-  box-shadow: 0 8px 32px hsl(220 50% 50% / 0.08), inset 0 1px 0 hsl(0 0% 100% / 0.6);
+  box-shadow: 0 8px 32px hsl(220 50% 50% / 0.1), inset 0 1px 0 hsl(0 0% 100% / 0.7);
 }
 
-.liquid-glass nav {
-  background: hsl(0 0% 100% / 0.35) !important;
-  backdrop-filter: blur(24px) saturate(1.8);
-  -webkit-backdrop-filter: blur(24px) saturate(1.8);
-  border-top: 1px solid hsl(0 0% 100% / 0.4) !important;
+.liquid-glass nav,
+.liquid-glass nav[class] {
+  background: hsl(0 0% 100% / 0.4) !important;
+  backdrop-filter: blur(28px) saturate(1.8);
+  -webkit-backdrop-filter: blur(28px) saturate(1.8);
+  border-top: 1px solid hsl(0 0% 100% / 0.5) !important;
+}
+
+.liquid-glass .gradient-primary {
+  background: linear-gradient(135deg, hsl(220 90% 56% / 0.9), hsl(260 70% 60% / 0.9));
+}
+
+.liquid-glass .bg-secondary {
+  background: hsl(220 20% 92% / 0.5) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.liquid-glass .rounded-2xl,
+.liquid-glass .rounded-xl {
+  border: 1px solid hsl(0 0% 100% / 0.3);
 }
 
 /* Y2K specific overrides */
