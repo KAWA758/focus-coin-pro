@@ -21,9 +21,8 @@ const FocusSession = () => {
 
   const end = () => {
     setRunning(false);
-    const earned = Math.max(coins, 25);
-    addBalance(earned);
-    navigate("/session-complete", { state: { coins: earned, minutes: mins } });
+    addBalance(coins);
+    navigate("/session-complete", { state: { coins, minutes: mins } });
   };
 
   return (

@@ -27,14 +27,6 @@ const SessionComplete = () => {
             <span className="text-muted-foreground">Czas skupienia</span>
             <span className="font-semibold text-foreground">{minutes} min</span>
           </div>
-          <div className="flex justify-between text-sm">
-            <span className="text-muted-foreground">Nagroda bazowa</span>
-            <span className="font-semibold text-foreground">+{base}</span>
-          </div>
-          <div className="flex justify-between text-sm">
-            <span className="text-muted-foreground">Mnożnik (x3)</span>
-            <span className="font-semibold text-neon">+{multiplier}</span>
-          </div>
           <div className="border-t border-border pt-3 flex justify-between text-sm">
             <span className="font-semibold text-foreground">Razem</span>
             <span className="font-bold text-primary flex items-center gap-1"><Coins size={14} /> +{coins}</span>

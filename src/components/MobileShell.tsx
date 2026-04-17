@@ -17,11 +17,11 @@ const MobileShell = ({ children }: { children: React.ReactNode }) => {
   );
 
   return (
-    <div className="mx-auto max-w-[430px] min-h-screen bg-background relative">
-      <div className={hideNav ? "" : "pb-20"}>{children}</div>
+    <div className="mx-auto w-full max-w-[480px] min-h-screen bg-background relative">
+      <div className={hideNav ? "" : "pb-24"}>{children}</div>
       {!hideNav && (
-        <nav className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[430px] bg-card/80 backdrop-blur-xl border-t border-border z-50">
-          <div className="flex items-center justify-around py-2 px-4">
+        <nav className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[480px] bg-card/80 backdrop-blur-xl border-t border-border z-50">
+          <div className="flex items-center justify-around py-2.5 px-4">
             {tabs.map((tab) => {
               const active = location.pathname === tab.path;
               return (
@@ -34,8 +34,8 @@ const MobileShell = ({ children }: { children: React.ReactNode }) => {
                       : "text-muted-foreground hover:text-foreground"
                   }`}
                 >
-                  <tab.icon size={22} strokeWidth={active ? 2.5 : 1.8} />
-                  <span className="text-[10px] font-medium">{tab.label}</span>
+                  <tab.icon size={24} strokeWidth={active ? 2.5 : 1.8} />
+                  <span className="text-[11px] font-medium">{tab.label}</span>
                 </button>
               );
             })}
