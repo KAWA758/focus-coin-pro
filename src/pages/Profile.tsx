@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
-import { ArrowLeft, User, Globe, Moon, Sun, Info, ChevronRight, Code, Smartphone, Heart, Sparkles, Palette } from "lucide-react";
+import { ArrowLeft, User, Globe, Moon, Sun, Info, ChevronRight, Code, Smartphone, Heart, Sparkles, Palette, Sliders, RotateCcw, Coins, Clock, Flame, Zap } from "lucide-react";
 import { useTheme } from "@/hooks/use-theme";
+import { usePrototype } from "@/hooks/use-prototype";
 import { useState } from "react";
 
 const themes = [
@@ -13,7 +14,18 @@ const themes = [
 const Profile = () => {
   const navigate = useNavigate();
   const { theme, setTheme } = useTheme();
+  const proto = usePrototype();
   const [language] = useState("pl");
+
+  const fields: { key: keyof typeof proto; label: string; icon: typeof Coins; min: number; max: number; step: number; suffix?: string }[] = [
+    { key: "balance", label: "Saldo", icon: Coins, min: 0, max: 100000, step: 10, suffix: "FC" },
+    { key: "todayEarned", label: "Zarobione dziś", icon: Coins, min: 0, max: 5000, step: 5, suffix: "FC" },
+    { key: "streak", label: "Seria", icon: Flame, min: 0, max: 365, step: 1, suffix: "dni" },
+    { key: "multiplier", label: "Mnożnik", icon: Zap, min: 1, max: 10, step: 1, suffix: "x" },
+    { key: "todayFocusMinutes", label: "Skupienie dziś", icon: Clock, min: 0, max: 1440, step: 5, suffix: "min" },
+    { key: "coinsPerMinute", label: "Coins / min", icon: Coins, min: 1, max: 100, step: 1 },
+    { key: "sessionTargetMinutes", label: "Cel sesji", icon: Clock, min: 5, max: 180, step: 5, suffix: "min" },
+  ];
 
   return (
     <div className="min-h-screen bg-background animate-fade-in">
