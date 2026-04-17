@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { Flame, Zap, Clock, ChevronRight, User, Target, TrendingUp, Gift, TrendingDown, Coins } from "lucide-react";
 import StreakCalendar from "@/components/StreakCalendar";
+import { usePrototype } from "@/hooks/use-prototype";
 
 const balanceHistory = [
   { label: "Sesja skupienia", coins: "+25", time: "2h temu", icon: Target, iconColor: "text-primary", positive: true },
@@ -12,6 +13,9 @@ const balanceHistory = [
 
 const HomeDashboard = () => {
   const navigate = useNavigate();
+  const { balance, todayEarned, streak, multiplier, todayFocusMinutes, userName } = usePrototype();
+  const focusH = Math.floor(todayFocusMinutes / 60);
+  const focusM = todayFocusMinutes % 60;
 
   return (
     <div className="animate-fade-in">
@@ -19,7 +23,7 @@ const HomeDashboard = () => {
       <div className="px-5 pt-14 pb-2 flex items-center justify-between">
         <div>
           <p className="text-sm text-muted-foreground font-medium">Dzień dobry</p>
-          <h2 className="text-lg font-semibold text-foreground">Alex</h2>
+          <h2 className="text-lg font-semibold text-foreground">{userName}</h2>
         </div>
         <button
           onClick={() => navigate("/profile")}
@@ -39,11 +43,11 @@ const HomeDashboard = () => {
           }} />
           <div className="relative z-10">
             <p className="text-primary-foreground/70 text-sm font-medium mb-1">Dostępne saldo</p>
-            <h1 className="text-4xl font-extrabold text-primary-foreground tracking-tight">1,240</h1>
+            <h1 className="text-4xl font-extrabold text-primary-foreground tracking-tight">{balance.toLocaleString("pl-PL")}</h1>
             <p className="text-primary-foreground/80 text-sm font-medium mt-0.5">FocusCoins</p>
             <div className="flex items-center gap-2 mt-3">
               <span className="text-xs text-primary-foreground/90 bg-primary-foreground/15 px-2.5 py-0.5 rounded-full flex items-center gap-1">
-                <TrendingUp size={12} /> +125 dzisiaj
+                <TrendingUp size={12} /> +{todayEarned} dzisiaj
               </span>
             </div>
           </div>
@@ -71,21 +75,21 @@ const HomeDashboard = () => {
           <div className="w-8 h-8 rounded-lg bg-accent/10 flex items-center justify-center mx-auto mb-2">
             <Clock size={18} className="text-accent" />
           </div>
-          <p className="text-xl font-bold text-foreground">2h 14m</p>
+          <p className="text-xl font-bold text-foreground">{focusH}h {focusM}m</p>
           <p className="text-[10px] text-muted-foreground font-medium mt-0.5">Dziś skupienie</p>
         </div>
         <div className="bg-card rounded-xl p-4 card-shadow text-center">
           <div className="w-8 h-8 rounded-lg bg-destructive/10 flex items-center justify-center mx-auto mb-2">
             <Flame size={18} className="text-destructive" />
           </div>
-          <p className="text-xl font-bold text-foreground">3 dni</p>
+          <p className="text-xl font-bold text-foreground">{streak} dni</p>
           <p className="text-[10px] text-muted-foreground font-medium mt-0.5">Seria</p>
         </div>
         <div className="bg-card rounded-xl p-4 card-shadow text-center">
           <div className="w-8 h-8 rounded-lg bg-neon/10 flex items-center justify-center mx-auto mb-2">
             <Zap size={18} className="text-neon" />
           </div>
-          <p className="text-xl font-bold text-foreground">x3</p>
+          <p className="text-xl font-bold text-foreground">x{multiplier}</p>
           <p className="text-[10px] text-muted-foreground font-medium mt-0.5">Mnożnik</p>
         </div>
       </div>
