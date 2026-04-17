@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { X } from "lucide-react";
+import { X, Coins } from "lucide-react";
+import { usePrototype } from "@/hooks/use-prototype";
 
 const FocusSession = () => {
   const navigate = useNavigate();
+  const { coinsPerMinute, multiplier, addBalance } = usePrototype();
   const [seconds, setSeconds] = useState(0);
   const [running, setRunning] = useState(true);
 
@@ -15,11 +17,13 @@ const FocusSession = () => {
 
   const mins = Math.floor(seconds / 60);
   const secs = seconds % 60;
-  const coins = Math.floor(seconds / 6);
+  const coins = Math.floor((seconds / 60) * coinsPerMinute * multiplier);
 
   const end = () => {
     setRunning(false);
-    navigate("/session-complete", { state: { coins: Math.max(coins, 25), minutes: mins } });
+    const earned = Math.max(coins, 25);
+    addBalance(earned);
+    navigate("/session-complete", { state: { coins: earned, minutes: mins } });
   };
 
   return (
@@ -38,7 +42,7 @@ const FocusSession = () => {
         </button>
         <span className="text-xs font-medium px-3 py-1 rounded-full"
           style={{ color: "hsl(230 10% 60%)", background: "hsl(0 0% 100% / 0.08)" }}>
-          mnożnik x3 aktywny
+          mnożnik x{multiplier} aktywny
         </span>
       </div>
 
@@ -52,7 +56,7 @@ const FocusSession = () => {
           {String(mins).padStart(2, "0")}:{String(secs).padStart(2, "0")}
         </h1>
         <div className="flex items-center gap-2 mt-2">
-          <span className="text-2xl">🪙</span>
+          <Coins size={22} style={{ color: "hsl(170 80% 50%)" }} />
           <span className="text-2xl font-bold" style={{ color: "hsl(170 80% 50%)" }}>
             +{coins}
           </span>
