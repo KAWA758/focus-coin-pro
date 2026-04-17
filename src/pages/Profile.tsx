@@ -17,7 +17,8 @@ const Profile = () => {
   const proto = usePrototype();
   const [language] = useState("pl");
 
-  const fields: { key: keyof typeof proto; label: string; icon: typeof Coins; min: number; max: number; step: number; suffix?: string }[] = [
+  type NumKey = "balance" | "todayEarned" | "streak" | "multiplier" | "todayFocusMinutes" | "coinsPerMinute" | "sessionTargetMinutes";
+  const fields: { key: NumKey; label: string; icon: typeof Coins; min: number; max: number; step: number; suffix?: string }[] = [
     { key: "balance", label: "Saldo", icon: Coins, min: 0, max: 100000, step: 10, suffix: "FC" },
     { key: "todayEarned", label: "Zarobione dziś", icon: Coins, min: 0, max: 5000, step: 5, suffix: "FC" },
     { key: "streak", label: "Seria", icon: Flame, min: 0, max: 365, step: 1, suffix: "dni" },
