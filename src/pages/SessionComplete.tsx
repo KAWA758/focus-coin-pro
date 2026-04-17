@@ -4,10 +4,7 @@ import { Coins, Trophy } from "lucide-react";
 const SessionComplete = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { coins = 25, minutes = 2 } = (location.state as any) || {};
-
-  const base = Math.floor(coins / 3);
-  const multiplier = coins - base;
+  const { coins = 0, minutes = 0 } = (location.state as any) || {};
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-between px-8 py-12 bg-background">
