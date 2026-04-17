@@ -132,12 +132,9 @@ const HomeDashboard = () => {
         </div>
       </div>
 
-      {/* Balance record */}
-      <div className="px-5 pt-5 pb-2">
-        <div className="flex items-center justify-between">
-          <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Historia salda</p>
-          <button className="text-xs text-primary font-medium">Zobacz wszystko</button>
-        </div>
       </div>
+    </div>
+  );
+};
 
 export default HomeDashboard;
