@@ -1,34 +1,32 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Music, ShoppingBag, Coffee, Tv, Package, UtensilsCrossed, Coins, Gamepad2, BookOpen, Dumbbell, Plane, Shirt, Headphones, Pizza } from "lucide-react";
-import { useCoins } from "@/hooks/use-coins";
 
 const rewards = [
-  { id: "1", brand: "Spotify", title: "1 miesiąc Premium", coins: 300, icon: Music, color: "hsl(141 73% 42%)", category: "Muzyka" },
-  { id: "2", brand: "Nike", title: "Kupon -15%", coins: 500, icon: ShoppingBag, color: "hsl(0 0% 10%)", category: "Moda" },
-  { id: "3", brand: "Starbucks", title: "Darmowe latte", coins: 150, icon: Coffee, color: "hsl(152 40% 30%)", category: "Jedzenie" },
-  { id: "4", brand: "Netflix", title: "1 tydzień gratis", coins: 400, icon: Tv, color: "hsl(0 75% 50%)", category: "Inne" },
-  { id: "5", brand: "Amazon", title: "Karta 20 zł", coins: 600, icon: Package, color: "hsl(33 100% 50%)", category: "Inne" },
-  { id: "6", brand: "Uber Eats", title: "Darmowa dostawa", coins: 200, icon: UtensilsCrossed, color: "hsl(148 60% 45%)", category: "Jedzenie" },
-  { id: "7", brand: "PlayStation", title: "Doładowanie 25 zł", coins: 700, icon: Gamepad2, color: "hsl(220 80% 50%)", category: "Gaming" },
-  { id: "8", brand: "Audible", title: "1 audiobook gratis", coins: 350, icon: BookOpen, color: "hsl(30 80% 50%)", category: "Inne" },
-  { id: "9", brand: "Gymshark", title: "Kupon -20%", coins: 450, icon: Dumbbell, color: "hsl(200 70% 45%)", category: "Moda" },
-  { id: "10", brand: "Ryanair", title: "Zniżka 30 zł", coins: 800, icon: Plane, color: "hsl(210 90% 40%)", category: "Inne" },
-  { id: "11", brand: "Zalando", title: "Kupon -10%", coins: 250, icon: Shirt, color: "hsl(15 80% 55%)", category: "Moda" },
-  { id: "12", brand: "Apple Music", title: "2 tygodnie gratis", coins: 200, icon: Headphones, color: "hsl(340 60% 50%)", category: "Muzyka" },
-  { id: "13", brand: "Domino's", title: "Pizza gratis", coins: 550, icon: Pizza, color: "hsl(205 80% 45%)", category: "Jedzenie" },
+  { id: "1", brand: "Spotify", title: "1 miesiąc Premium", coins: 300, icon: Music, color: "hsl(141 73% 42%)" },
+  { id: "2", brand: "Nike", title: "Kupon -15%", coins: 500, icon: ShoppingBag, color: "hsl(0 0% 10%)" },
+  { id: "3", brand: "Starbucks", title: "Darmowe latte", coins: 150, icon: Coffee, color: "hsl(152 40% 30%)" },
+  { id: "4", brand: "Netflix", title: "1 tydzień gratis", coins: 400, icon: Tv, color: "hsl(0 75% 50%)" },
+  { id: "5", brand: "Amazon", title: "Karta 20 zł", coins: 600, icon: Package, color: "hsl(33 100% 50%)" },
+  { id: "6", brand: "Uber Eats", title: "Darmowa dostawa", coins: 200, icon: UtensilsCrossed, color: "hsl(148 60% 45%)" },
+  { id: "7", brand: "PlayStation", title: "Doładowanie 25 zł", coins: 700, icon: Gamepad2, color: "hsl(220 80% 50%)" },
+  { id: "8", brand: "Audible", title: "1 audiobook gratis", coins: 350, icon: BookOpen, color: "hsl(30 80% 50%)" },
+  { id: "9", brand: "Gymshark", title: "Kupon -20%", coins: 450, icon: Dumbbell, color: "hsl(200 70% 45%)" },
+  { id: "10", brand: "Ryanair", title: "Zniżka 30 zł", coins: 800, icon: Plane, color: "hsl(210 90% 40%)" },
+  { id: "11", brand: "Zalando", title: "Kupon -10%", coins: 250, icon: Shirt, color: "hsl(15 80% 55%)" },
+  { id: "12", brand: "Apple Music", title: "2 tygodnie gratis", coins: 200, icon: Headphones, color: "hsl(340 60% 50%)" },
+  { id: "13", brand: "Domino's", title: "Pizza gratis", coins: 550, icon: Pizza, color: "hsl(205 80% 45%)" },
 ];
 
-const categories = ["Wszystkie", "Muzyka", "Jedzenie", "Moda", "Gaming"];
+const categories = [
+  { label: "Wszystkie", active: true },
+  { label: "Muzyka", active: false },
+  { label: "Jedzenie", active: false },
+  { label: "Moda", active: false },
+  { label: "Gaming", active: false },
+];
 
 const Rewards = () => {
   const navigate = useNavigate();
-  const { balance } = useCoins();
-  const [activeCategory, setActiveCategory] = useState("Wszystkie");
-
-  const filtered = activeCategory === "Wszystkie"
-    ? rewards
-    : rewards.filter((r) => r.category === activeCategory);
 
   return (
     <div className="animate-fade-in">
@@ -43,7 +41,7 @@ const Rewards = () => {
             <Coins size={18} className="text-primary-foreground" />
           </div>
           <div>
-            <p className="text-lg font-bold text-foreground">{balance.toLocaleString()}</p>
+            <p className="text-lg font-bold text-foreground">1,240</p>
             <p className="text-xs text-muted-foreground">dostępnych monet</p>
           </div>
         </div>
@@ -54,15 +52,14 @@ const Rewards = () => {
         <div className="flex gap-2 overflow-x-auto no-scrollbar">
           {categories.map((cat) => (
             <button
-              key={cat}
-              onClick={() => setActiveCategory(cat)}
+              key={cat.label}
               className={`text-xs font-medium px-3 py-1.5 rounded-full whitespace-nowrap transition-all ${
-                cat === activeCategory
+                cat.active
                   ? "gradient-primary text-primary-foreground"
                   : "bg-secondary text-muted-foreground"
               }`}
             >
-              {cat}
+              {cat.label}
             </button>
           ))}
         </div>
@@ -74,7 +71,7 @@ const Rewards = () => {
       </div>
 
       <div className="px-5 pb-6 grid grid-cols-2 gap-3">
-        {filtered.map((r) => {
+        {rewards.map((r) => {
           const IconComp = r.icon;
           return (
             <button

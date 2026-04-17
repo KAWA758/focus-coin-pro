@@ -4,7 +4,6 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { ThemeProvider } from "@/hooks/use-theme";
-import { CoinsProvider } from "@/hooks/use-coins";
 import MobileShell from "@/components/MobileShell";
 import Onboarding from "./pages/Onboarding";
 import HomeDashboard from "./pages/HomeDashboard";
@@ -22,7 +21,6 @@ const queryClient = new QueryClient();
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <ThemeProvider>
-      <CoinsProvider>
       <TooltipProvider>
         <Toaster />
         <Sonner />
@@ -43,7 +41,6 @@ const App = () => (
           </MobileShell>
         </BrowserRouter>
       </TooltipProvider>
-      </CoinsProvider>
     </ThemeProvider>
   </QueryClientProvider>
 );

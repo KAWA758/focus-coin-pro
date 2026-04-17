@@ -33,7 +33,16 @@ const Onboarding = () => {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-between px-8 py-12">
-      <div />
+      <div className="flex gap-2 pt-4">
+        {slides.map((_, i) => (
+          <div
+            key={i}
+            className={`h-1 rounded-full transition-all duration-300 ${
+              i === current ? "w-8 gradient-primary" : "w-2 bg-border"
+            }`}
+          />
+        ))}
+      </div>
 
       <div className="flex-1 flex flex-col items-center justify-center text-center gap-6 animate-fade-in" key={current}>
         <div className="w-32 h-32 rounded-full gradient-neon flex items-center justify-center glow-primary">
@@ -47,24 +56,12 @@ const Onboarding = () => {
         </p>
       </div>
 
-      <div className="w-full space-y-4">
-        <div className="flex gap-2 justify-center">
-          {slides.map((_, i) => (
-            <div
-              key={i}
-              className={`h-1 rounded-full transition-all duration-300 ${
-                i === current ? "w-8 gradient-primary" : "w-2 bg-border"
-              }`}
-            />
-          ))}
-        </div>
-        <button
-          onClick={next}
-          className="w-full py-4 rounded-2xl gradient-primary text-primary-foreground font-semibold text-lg transition-all active:scale-[0.98]"
-        >
-          {current === slides.length - 1 ? "Zaczynamy" : "Dalej"}
-        </button>
-      </div>
+      <button
+        onClick={next}
+        className="w-full py-4 rounded-2xl gradient-primary text-primary-foreground font-semibold text-lg transition-all active:scale-[0.98]"
+      >
+        {current === slides.length - 1 ? "Zaczynamy" : "Dalej"}
+      </button>
     </div>
   );
 };

@@ -6,6 +6,7 @@ const currentYear = today.getFullYear();
 const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
 const firstDayOfWeek = new Date(currentYear, currentMonth, 1).getDay();
 
+// Simulated streak days
 const streakDays = new Set([1, 2, 3, 5, 6, 7, 8, 10, 11, 12, 14, 15, 16, 17, 19, 20]);
 const todayDate = today.getDate();
 
@@ -20,23 +21,25 @@ const StreakCalendar = () => {
     <div className="bg-card rounded-2xl p-4 card-shadow">
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-2">
-          <Flame size={16} className="text-destructive" />
+          <Flame size={18} className="text-destructive" />
           <h3 className="text-sm font-semibold text-foreground">Kalendarz serii</h3>
         </div>
         <span className="text-xs font-medium text-muted-foreground">{monthNames[currentMonth]} {currentYear}</span>
       </div>
 
+      {/* Day labels */}
       <div className="grid grid-cols-7 gap-1 mb-1">
-        {dayLabels.map((d, i) => (
-          <div key={i} className="text-center text-[11px] font-medium text-muted-foreground py-0.5">
+        {dayLabels.map((d) => (
+          <div key={d} className="text-center text-[10px] font-medium text-muted-foreground py-0.5">
             {d}
           </div>
         ))}
       </div>
 
+      {/* Calendar grid */}
       <div className="grid grid-cols-7 gap-1">
         {blanks.map((b) => (
-          <div key={`b-${b}`} className="aspect-square" />
+          <div key={`blank-${b}`} className="aspect-square" />
         ))}
         {days.map((day) => {
           const isStreak = streakDays.has(day);
@@ -46,7 +49,7 @@ const StreakCalendar = () => {
           return (
             <div
               key={day}
-              className={`aspect-square rounded-lg flex items-center justify-center text-xs font-medium ${
+              className={`aspect-square rounded-lg flex items-center justify-center text-[11px] font-medium transition-all relative ${
                 isToday
                   ? "gradient-primary text-primary-foreground font-bold ring-2 ring-primary/30"
                   : isStreak && isPast
@@ -66,14 +69,15 @@ const StreakCalendar = () => {
         })}
       </div>
 
+      {/* Legend */}
       <div className="flex items-center gap-4 mt-3 pt-2 border-t border-border">
         <div className="flex items-center gap-1.5">
           <div className="w-3 h-3 rounded-sm bg-neon/15" />
-          <span className="text-[11px] text-muted-foreground">Ukończona</span>
+          <span className="text-[10px] text-muted-foreground">Sesja ukończona</span>
         </div>
         <div className="flex items-center gap-1.5">
           <div className="w-3 h-3 rounded-sm gradient-primary" />
-          <span className="text-[11px] text-muted-foreground">Dzisiaj</span>
+          <span className="text-[10px] text-muted-foreground">Dzisiaj</span>
         </div>
       </div>
     </div>

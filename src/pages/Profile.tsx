@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft, User, Globe, Moon, Sun, Info, ChevronRight, Code, Smartphone, Heart, Sparkles, Palette } from "lucide-react";
 import { useTheme } from "@/hooks/use-theme";
-import { useCoins } from "@/hooks/use-coins";
 import { useState } from "react";
 
 const themes = [
@@ -14,7 +13,6 @@ const themes = [
 const Profile = () => {
   const navigate = useNavigate();
   const { theme, setTheme } = useTheme();
-  const { balance } = useCoins();
   const [language] = useState("pl");
 
   return (
@@ -47,7 +45,7 @@ const Profile = () => {
             </div>
             <div>
               <p className="text-xs text-muted-foreground">Dostępne saldo</p>
-              <p className="text-lg font-bold text-foreground">{balance.toLocaleString()} FC</p>
+              <p className="text-lg font-bold text-foreground">1,240 FC</p>
             </div>
           </div>
           <span className="text-xs text-neon font-semibold bg-neon/10 px-2.5 py-1 rounded-full">+125 dzisiaj</span>
