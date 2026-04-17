@@ -131,8 +131,6 @@ const HomeDashboard = () => {
           ))}
         </div>
       </div>
-
-      </div>
     </div>
   );
 };
