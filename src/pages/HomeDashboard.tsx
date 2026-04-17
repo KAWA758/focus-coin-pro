@@ -20,16 +20,16 @@ const HomeDashboard = () => {
   return (
     <div className="animate-fade-in">
       {/* Header */}
-      <div className="px-5 pt-14 pb-2 flex items-center justify-between">
+      <div className="px-5 pt-12 pb-3 flex items-center justify-between">
         <div>
           <p className="text-sm text-muted-foreground font-medium">Dzień dobry</p>
-          <h2 className="text-lg font-semibold text-foreground">{userName}</h2>
+          <h2 className="text-xl font-semibold text-foreground">{userName}</h2>
         </div>
         <button
           onClick={() => navigate("/profile")}
-          className="w-10 h-10 rounded-full gradient-primary flex items-center justify-center text-primary-foreground"
+          className="w-11 h-11 rounded-full gradient-primary flex items-center justify-center text-primary-foreground"
         >
-          <User size={18} />
+          <User size={20} />
         </button>
       </div>
 
@@ -43,10 +43,10 @@ const HomeDashboard = () => {
           }} />
           <div className="relative z-10">
             <p className="text-primary-foreground/70 text-sm font-medium mb-1">Dostępne saldo</p>
-            <h1 className="text-4xl font-extrabold text-primary-foreground tracking-tight">{balance.toLocaleString("pl-PL")}</h1>
-            <p className="text-primary-foreground/80 text-sm font-medium mt-0.5">FocusCoins</p>
-            <div className="flex items-center gap-2 mt-3">
-              <span className="text-xs text-primary-foreground/90 bg-primary-foreground/15 px-2.5 py-0.5 rounded-full flex items-center gap-1">
+            <h1 className="text-5xl font-extrabold text-primary-foreground tracking-tight leading-none">{balance.toLocaleString("pl-PL")}</h1>
+            <p className="text-primary-foreground/80 text-sm font-medium mt-1.5">FocusCoins</p>
+            <div className="flex items-center gap-2 mt-3.5">
+              <span className="text-xs text-primary-foreground/90 bg-primary-foreground/15 px-2.5 py-1 rounded-full flex items-center gap-1">
                 <TrendingUp size={12} /> +{todayEarned} dzisiaj
               </span>
             </div>
