@@ -57,10 +57,10 @@ const Profile = () => {
             </div>
             <div>
               <p className="text-xs text-muted-foreground">Dostępne saldo</p>
-              <p className="text-lg font-bold text-foreground">1,240 FC</p>
+              <p className="text-lg font-bold text-foreground">{proto.balance.toLocaleString("pl-PL")} FC</p>
             </div>
           </div>
-          <span className="text-xs text-neon font-semibold bg-neon/10 px-2.5 py-1 rounded-full">+125 dzisiaj</span>
+          <span className="text-xs text-neon font-semibold bg-neon/10 px-2.5 py-1 rounded-full">+{proto.todayEarned} dzisiaj</span>
         </div>
 
         {/* Theme selector */}
@@ -171,6 +171,62 @@ const Profile = () => {
               </p>
             </div>
           </div>
+        </div>
+
+        {/* Demo controls panel */}
+        <div>
+          <div className="flex items-center justify-between px-1 mb-2">
+            <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider flex items-center gap-1.5">
+              <Sliders size={12} /> Panel demo
+            </p>
+            <button
+              onClick={proto.reset}
+              className="text-xs text-primary font-medium flex items-center gap-1"
+            >
+              <RotateCcw size={12} /> Reset
+            </button>
+          </div>
+          <div className="bg-card rounded-2xl card-shadow overflow-hidden divide-y divide-border">
+            {fields.map((f) => {
+              const value = proto[f.key] as number;
+              return (
+                <div key={f.key} className="p-4">
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-center gap-2.5">
+                      <div className="w-8 h-8 rounded-lg bg-secondary flex items-center justify-center">
+                        <f.icon size={14} className="text-primary" />
+                      </div>
+                      <p className="text-sm font-medium text-foreground">{f.label}</p>
+                    </div>
+                    <input
+                      type="number"
+                      value={value}
+                      min={f.min}
+                      max={f.max}
+                      step={f.step}
+                      onChange={(e) => proto.setField(f.key, Number(e.target.value) as never)}
+                      className="w-20 text-right text-sm font-bold text-foreground bg-secondary rounded-lg px-2 py-1 border border-border focus:outline-none focus:ring-2 focus:ring-primary"
+                    />
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <input
+                      type="range"
+                      min={f.min}
+                      max={f.max}
+                      step={f.step}
+                      value={value}
+                      onChange={(e) => proto.setField(f.key, Number(e.target.value) as never)}
+                      className="flex-1 accent-primary"
+                    />
+                    {f.suffix && <span className="text-[10px] text-muted-foreground font-medium w-8 text-right">{f.suffix}</span>}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+          <p className="text-[10px] text-muted-foreground mt-2 px-1">
+            Zmiany aktualizują dashboard, sesję i nagrody w czasie rzeczywistym.
+          </p>
         </div>
       </div>
     </div>
