@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { Users, Trophy, Facebook, Contact, UserPlus, Crown, Medal, Award, ChevronRight, Coins } from "lucide-react";
+import { usePrototype } from "@/hooks/use-prototype";
 
-const leaderboard = [
+const getLeaderboard = (userBalance: number, userStreak: number, userInitials: string) => [
   { rank: 1, name: "Kasia M.", coins: 8420, streak: 28, avatar: "KM", you: false },
   { rank: 2, name: "Tomek W.", coins: 7105, streak: 21, avatar: "TW", you: false },
   { rank: 3, name: "Ola K.", coins: 5890, streak: 15, avatar: "OK", you: false },
-  { rank: 4, name: "Alex K.", coins: 3450, streak: 12, avatar: "AK", you: true },
+  { rank: 4, name: "Alex K.", coins: userBalance, streak: userStreak, avatar: userInitials, you: true },
   { rank: 5, name: "Marta S.", coins: 2980, streak: 9, avatar: "MS", you: false },
   { rank: 6, name: "Piotr J.", coins: 2540, streak: 7, avatar: "PJ", you: false },
   { rank: 7, name: "Zosia B.", coins: 1870, streak: 5, avatar: "ZB", you: false },
@@ -22,6 +23,10 @@ const Leaderboard = () => {
   const [tab, setTab] = useState<"ranking" | "friends">("ranking");
   const [syncedFb, setSyncedFb] = useState(false);
   const [syncedContacts, setSyncedContacts] = useState(false);
+  const { balance, streak, userName } = usePrototype();
+
+  // Get initials from userName
+  const userInitials = userName.split(" ").map(n => n[0]).join("").toUpperCase();
 
   return (
     <div className="animate-fade-in">
@@ -74,7 +79,7 @@ const Leaderboard = () => {
               <div className="relative z-10 flex items-center justify-between">
                 <div className="flex items-center gap-3">
                   <div className="w-12 h-12 rounded-full bg-primary-foreground/20 backdrop-blur-sm flex items-center justify-center border-2 border-primary-foreground/30 font-bold text-primary-foreground text-sm">
-                    AK
+                    {userInitials}
                   </div>
                   <div>
                     <p className="text-primary-foreground/70 text-xs font-medium">Twoja pozycja</p>
@@ -84,7 +89,7 @@ const Leaderboard = () => {
                 <div className="text-right">
                   <p className="text-primary-foreground/70 text-xs font-medium">Monety</p>
                   <p className="text-primary-foreground text-lg font-bold flex items-center gap-1">
-                    <Coins size={16} /> 3,450
+                    <Coins size={16} /> {balance.toLocaleString("pl-PL")}
                   </p>
                 </div>
               </div>
@@ -99,7 +104,7 @@ const Leaderboard = () => {
           {/* Leaderboard list */}
           <div className="px-5 pb-6">
             <div className="bg-card rounded-2xl card-shadow divide-y divide-border overflow-hidden">
-              {leaderboard.map((user) => (
+              {getLeaderboard(balance, streak, userInitials).map((user) => (
                 <div
                   key={user.rank}
                   className={`flex items-center gap-3 px-4 py-3.5 transition-colors ${

@@ -1,5 +1,6 @@
 import { BarChart, Bar, XAxis, ResponsiveContainer, LineChart, Line, Tooltip } from "recharts";
 import { Clock, Coins, Flame } from "lucide-react";
+import { usePrototype } from "@/hooks/use-prototype";
 
 const weeklyData = [
   { day: "Pon", hours: 1.5 },
@@ -21,7 +22,14 @@ const coinsData = [
   { day: "Nd", coins: 62 },
 ];
 
-const Stats = () => (
+const Stats = () => {
+  const { balance, streak, todayFocusMinutes } = usePrototype();
+
+  // Calculate hours and minutes from todayFocusMinutes
+  const focusH = Math.floor(todayFocusMinutes / 60);
+  const focusM = todayFocusMinutes % 60;
+
+  return (
   <div className="animate-fade-in">
     <div className="px-5 pt-14 pb-2">
       <h1 className="text-2xl font-bold text-foreground mb-1">Statystyki</h1>
@@ -35,9 +43,9 @@ const Stats = () => (
 
     <div className="px-5 grid grid-cols-3 gap-3 mb-2">
       {[
-        { label: "Łączne skupienie", value: "48h 22m", icon: Clock, iconColor: "text-accent" },
-        { label: "Zdobyte monety", value: "3,450", icon: Coins, iconColor: "text-primary" },
-        { label: "Najdłuższa seria", value: "12 dni", icon: Flame, iconColor: "text-destructive" },
+        { label: "Łączne skupienie", value: `${focusH}h ${focusM}m`, icon: Clock, iconColor: "text-accent" },
+        { label: "Zdobyte monety", value: balance.toLocaleString("pl-PL"), icon: Coins, iconColor: "text-primary" },
+        { label: "Najdłuższa seria", value: `${streak} dni`, icon: Flame, iconColor: "text-destructive" },
       ].map((s, i) => (
         <div key={i} className="bg-card rounded-xl p-3 card-shadow text-center">
           <div className="w-7 h-7 rounded-lg bg-secondary flex items-center justify-center mx-auto mb-1.5">
@@ -78,6 +86,7 @@ const Stats = () => (
       </div>
     </div>
   </div>
-);
+  );
+};
 
 export default Stats;
