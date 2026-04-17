@@ -8,6 +8,7 @@ import { PrototypeProvider } from "@/hooks/use-prototype";
 import MobileShell from "@/components/MobileShell";
 import Onboarding from "./pages/Onboarding";
 import HomeDashboard from "./pages/HomeDashboard";
+import SessionLobby from "./pages/SessionLobby";
 import FocusSession from "./pages/FocusSession";
 import SessionComplete from "./pages/SessionComplete";
 import Rewards from "./pages/Rewards";
@@ -31,6 +32,7 @@ const App = () => (
             <Routes>
               <Route path="/" element={<Onboarding />} />
               <Route path="/home" element={<HomeDashboard />} />
+              <Route path="/session" element={<SessionLobby />} />
               <Route path="/focus" element={<FocusSession />} />
               <Route path="/session-complete" element={<SessionComplete />} />
               <Route path="/rewards" element={<Rewards />} />

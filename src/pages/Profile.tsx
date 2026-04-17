@@ -152,7 +152,7 @@ const Profile = () => {
                 </div>
                 <div className="text-left">
                   <p className="text-sm font-medium text-foreground">Stworzone przez</p>
-                  <p className="text-xs text-muted-foreground">Zespół FocusCoin</p>
+                  <p className="text-xs text-muted-foreground">Unplugio Team</p>
                 </div>
               </div>
             </div>
@@ -168,7 +168,7 @@ const Profile = () => {
             <div>
               <p className="text-sm font-semibold text-foreground">Tryb prototypu</p>
               <p className="text-xs text-muted-foreground mt-1 leading-relaxed">
-                To jest interaktywny prototyp demonstracyjny. Dane są symulowane w celach prezentacyjnych dla inwestorów.
+                To jest interaktywny prototyp demonstracyjny. Dane są symulowane w celach prezentacyjnych.
               </p>
             </div>
           </div>
