@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { Music, ShoppingBag, Coffee, Tv, Package, UtensilsCrossed, Coins, Gamepad2, BookOpen, Dumbbell, Plane, Shirt, Headphones, Pizza } from "lucide-react";
+import { usePrototype } from "@/hooks/use-prototype";
 
 const rewards = [
   { id: "1", brand: "Spotify", title: "1 miesiąc Premium", coins: 300, icon: Music, color: "hsl(141 73% 42%)" },
@@ -14,7 +15,6 @@ const rewards = [
   { id: "10", brand: "Ryanair", title: "Zniżka 30 zł", coins: 800, icon: Plane, color: "hsl(210 90% 40%)" },
   { id: "11", brand: "Zalando", title: "Kupon -10%", coins: 250, icon: Shirt, color: "hsl(15 80% 55%)" },
   { id: "12", brand: "Apple Music", title: "2 tygodnie gratis", coins: 200, icon: Headphones, color: "hsl(340 60% 50%)" },
-  { id: "13", brand: "Domino's", title: "Pizza gratis", coins: 550, icon: Pizza, color: "hsl(205 80% 45%)" },
 ];
 
 const categories = [
@@ -27,6 +27,7 @@ const categories = [
 
 const Rewards = () => {
   const navigate = useNavigate();
+  const { balance } = usePrototype();
 
   return (
     <div className="animate-fade-in">
@@ -41,7 +42,7 @@ const Rewards = () => {
             <Coins size={18} className="text-primary-foreground" />
           </div>
           <div>
-            <p className="text-lg font-bold text-foreground">1,240</p>
+            <p className="text-lg font-bold text-foreground">{balance.toLocaleString("pl-PL")}</p>
             <p className="text-xs text-muted-foreground">dostępnych monet</p>
           </div>
         </div>
