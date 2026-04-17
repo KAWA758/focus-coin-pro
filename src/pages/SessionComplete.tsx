@@ -4,10 +4,7 @@ import { Coins, Trophy } from "lucide-react";
 const SessionComplete = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { coins = 25, minutes = 2 } = (location.state as any) || {};
-
-  const base = Math.floor(coins / 3);
-  const multiplier = coins - base;
+  const { coins = 0, minutes = 0 } = (location.state as any) || {};
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-between px-8 py-12 bg-background">
@@ -26,14 +23,6 @@ const SessionComplete = () => {
           <div className="flex justify-between text-sm">
             <span className="text-muted-foreground">Czas skupienia</span>
             <span className="font-semibold text-foreground">{minutes} min</span>
-          </div>
-          <div className="flex justify-between text-sm">
-            <span className="text-muted-foreground">Nagroda bazowa</span>
-            <span className="font-semibold text-foreground">+{base}</span>
-          </div>
-          <div className="flex justify-between text-sm">
-            <span className="text-muted-foreground">Mnożnik (x3)</span>
-            <span className="font-semibold text-neon">+{multiplier}</span>
           </div>
           <div className="border-t border-border pt-3 flex justify-between text-sm">
             <span className="font-semibold text-foreground">Razem</span>
